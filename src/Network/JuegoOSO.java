@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Network;
-
 import UI.TableroGUI;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author aperc
  */
-public class JuegoOSO extends Thread{
+public class JuegoOso extends Thread{
     
     private String hostAddr;
     private int port;
@@ -43,7 +42,7 @@ public class JuegoOSO extends Thread{
 
     
 
-    public JuegoOSO(JButton enviar,JPanel tablero,JLabel osoLoc, JLabel osoRiv, String port, String ip, String name) {
+    public JuegoOso(JButton enviar,JPanel tablero,JLabel osoLoc, JLabel osoRiv, String port, String ip, String name) {
         this.enviar = enviar;
         this.panel = tablero;
         this.enviar.setEnabled(false);
@@ -77,7 +76,7 @@ public class JuegoOSO extends Thread{
                     try {
                         out.writeUTF(jug);
                     } catch (IOException ex) {
-                        Logger.getLogger(JuegoOSO.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(JuegoOso.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
                 }
@@ -122,7 +121,7 @@ public class JuegoOSO extends Thread{
         } catch (IOException ex) {
             ImageIcon icon = new ImageIcon("src\\DATA\\osoError.png");
             JOptionPane.showMessageDialog(null, "ERROR AL CONECTAR AL SERVIDOR", "Error", JOptionPane.ERROR_MESSAGE,icon);
-            Logger.getLogger(JuegoOSO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JuegoOso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

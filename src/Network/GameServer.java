@@ -11,7 +11,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import static java.lang.Thread.interrupted;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -24,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author aperc
  */
-public class Server extends Thread{    
+public class GameServer extends Thread{    
     final int port;
     final List<ClientThread> clients = new LinkedList<>();
     GameState state;
@@ -32,7 +31,7 @@ public class Server extends Thread{
     int columnas;
     
     
-    public Server(int port,int filas,int columnas) {
+    public GameServer(int port,int filas,int columnas) {
         this.port = port;
         this.columnas = columnas;
         this.filas = filas;
@@ -82,7 +81,7 @@ public class Server extends Thread{
             try {
                 out.writeUTF(msg);
             } catch (IOException ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GameServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -196,7 +195,7 @@ public class Server extends Thread{
             } catch (EOFException | SocketException s) {
                 s.printStackTrace();
             } catch (IOException ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GameServer.class.getName()).log(Level.SEVERE, null, ex);
             } finally { //we have finished or failed so let's close the socket and remove ourselves from the list
                 try{ socket.close(); } catch(Exception ex){} //this will make sure that the socket closes
                 synchronized (clients) {
